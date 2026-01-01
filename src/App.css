@@ -241,6 +241,151 @@ h1 {
   background-color: #5a6268;
 }
 
+/* ===== Property Page ===== */
+.property-page {
+  max-width: 1000px;
+  margin: 0 auto;
+  background: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 20px;
+  color: #0077cc;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.back-link:hover {
+  text-decoration: underline;
+}
+
+.property-header {
+  margin-bottom: 20px;
+}
+
+.property-header h1 {
+  font-size: 2.5rem;
+  color: #2c3e50;
+  margin-bottom: 10px;
+}
+
+.property-price {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #0077cc;
+  margin: 10px 0;
+}
+
+.property-location {
+  font-size: 1.1rem;
+  color: #666;
+  margin: 10px 0;
+}
+
+.property-details {
+  font-size: 1rem;
+  color: #555;
+  margin: 10px 0;
+}
+
+.favourite-btn-page {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  background-color: #e74c3c;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1.1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.property-gallery {
+  margin: 30px 0;
+}
+
+.property-tabs {
+  margin-top: 30px;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 2px solid #dee2e6;
+  margin-bottom: 20px;
+}
+
+.react-tabs__tab {
+  padding: 12px 24px;
+  font-weight: 600;
+  color: #666;
+  cursor: pointer;
+  border: none;
+  background: none;
+  transition: color 0.3s;
+}
+
+.react-tabs__tab:hover {
+  color: #0077cc;
+}
+
+.react-tabs__tab--selected {
+  color: #0077cc;
+  border-bottom: 3px solid #0077cc;
+}
+
+.tab-content {
+  padding: 20px 0;
+}
+
+.tab-content h2 {
+  margin-bottom: 15px;
+  color: #2c3e50;
+}
+
+.floor-plan-placeholder {
+  background: #f8f9fa;
+  padding: 100px;
+  text-align: center;
+  border-radius: 8px;
+  font-size: 2rem;
+  color: #999;
+}
+
+.map-container iframe {
+  border-radius: 8px;
+}
+
+/* ===== Responsive Design ===== */
+
+/* Tablet and below (iPad landscape width: 1024px) */
+@media (max-width: 1024px) {
+  .main-content {
+    flex-direction: column;
+  }
+
+  .favourites-sidebar {
+    width: 100%;
+    position: static;
+    max-height: none;
+    margin-bottom: 30px;
+  }
+
+  .properties-grid {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+  }
+
+  .search-page h1 {
+    font-size: 2rem;
+  }
+}
+
+
 /* Responsive: wrap items on smaller screens */
 @media (max-width: 768px) {
   .search-form {
