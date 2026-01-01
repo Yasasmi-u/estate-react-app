@@ -1,5 +1,4 @@
 // src/components/FavouritesList.jsx
-import React from "react";
 import { Link } from "react-router-dom";
 import DOMPurify from "dompurify";
 

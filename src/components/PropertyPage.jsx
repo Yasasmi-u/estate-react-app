@@ -1,5 +1,7 @@
 // src/components/PropertyPage.jsx
 import { useParams, Link } from "react-router-dom";
+import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
+import "react-tabs/style/react-tabs.css";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import DOMPurify from "dompurify";
