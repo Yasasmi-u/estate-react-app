@@ -21,26 +21,26 @@ import prop2pic4 from "../assets/prop2pic4small.jpeg";
 import prop2pic5 from "../assets/prop2pic5small.jpeg";
 import prop2pic6 from "../assets/prop2pic6small.jpeg";
 
-import prop3pic1 from "../assets/prop3pic1small.jpg";
-import prop3pic2 from "../assets/prop3pic2small.jpg";
-import prop3pic3 from "../assets/prop3pic3small.jpg";
-import prop3pic4 from "../assets/prop3pic4small.jpg";
-import prop3pic5 from "../assets/prop3pic5small.jpg";
-import prop3pic6 from "../assets/prop3pic6small.jpg";
+import prop3pic1 from "../assets/prop3pic1small.jpeg";
+import prop3pic2 from "../assets/prop3pic2small.jpeg";
+import prop3pic3 from "../assets/prop3pic3small.jpeg";
+import prop3pic4 from "../assets/prop3pic4small.jpeg";
+import prop3pic5 from "../assets/prop3pic5small.jpeg";
+import prop3pic6 from "../assets/prop3pic6small.jpeg";
 
-import prop4pic1 from "../assets/prop4pic1small.jpg";
-import prop4pic2 from "../assets/prop4pic2small.jpg";
-import prop4pic3 from "../assets/prop4pic3small.jpg";
-import prop4pic4 from "../assets/prop4pic4small.jpg";
-import prop4pic5 from "../assets/prop4pic5small.jpg";
-import prop4pic6 from "../assets/prop4pic6small.jpg";
+import prop4pic1 from "../assets/prop4pic1small.jpeg";
+import prop4pic2 from "../assets/prop4pic2small.jpeg";
+import prop4pic3 from "../assets/prop4pic3small.jpeg";
+import prop4pic4 from "../assets/prop4pic4small.jpeg";
+import prop4pic5 from "../assets/prop4pic5small.jpeg";
+import prop4pic6 from "../assets/prop4pic6small.jpeg";
 
-import prop5pic1 from "../assets/prop5pic1small.jpg";
-import prop5pic2 from "../assets/prop5pic2small.jpg";
-import prop5pic3 from "../assets/prop5pic3small.jpg";
-import prop5pic4 from "../assets/prop5pic4small.jpg";
-import prop5pic5 from "../assets/prop5pic5small.jpg";
-import prop5pic6 from "../assets/prop5pic6small.jpg";
+import prop5pic1 from "../assets/prop5pic1small.jpeg";
+import prop5pic2 from "../assets/prop5pic2small.jpeg";
+import prop5pic3 from "../assets/prop5pic3small.jpeg";
+import prop5pic4 from "../assets/prop5pic4small.jpeg";
+import prop5pic5 from "../assets/prop5pic5small.jpeg";
+import prop5pic6 from "../assets/prop5pic6small.jpeg";
 
 import prop6pic1 from "../assets/prop6pic1small.jpeg";
 import prop6pic2 from "../assets/prop6pic2small.jpeg";
@@ -50,7 +50,7 @@ import prop6pic5 from "../assets/prop6pic5small.jpeg";
 import prop6pic6 from "../assets/prop6pic6small.jpeg";
 
 import prop7pic1 from "../assets/prop7pic1small.jpeg";
-import prop7pic2 from "../assets/prop7pic2small.jpg";
+import prop7pic2 from "../assets/prop7pic2small.jpeg";
 import prop7pic3 from "../assets/prop7pic3small.jpeg";
 import prop7pic4 from "../assets/prop7pic4small.jpeg";
 import prop7pic5 from "../assets/prop7pic5small.jpeg";

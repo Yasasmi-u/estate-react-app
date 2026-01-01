@@ -6,9 +6,9 @@ import DOMPurify from "dompurify";
 
 import prop1pic1 from "../assets/prop1pic1small.jpeg";
 import prop2pic1 from "../assets/prop2pic1small.jpeg";
-import prop3pic1 from "../assets/prop3pic1small.jpg";
-import prop4pic1 from "../assets/prop4pic1small.jpg";
-import prop5pic1 from "../assets/prop5pic1small.jpg";
+import prop3pic1 from "../assets/prop3pic1small.jpeg";
+import prop4pic1 from "../assets/prop4pic1small.jpeg";
+import prop5pic1 from "../assets/prop5pic1small.jpeg";
 import prop6pic1 from "../assets/prop6pic1small.jpeg";
 import prop7pic1 from "../assets/prop7pic1small.jpeg";
 
