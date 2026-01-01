@@ -28,12 +28,15 @@ function App() {
           new Date(`${p.added.month} 1`).getMonth(),
           p.added.day
         );
-        return addedDate >= dateAdded;
+        
+        if (dateAdded.start && dateAdded.end) {
+          return addedDate >= dateAdded.start && addedDate <= dateAdded.end;
+        } else if (dateAdded.start) {
+          return addedDate >= dateAdded.start;
+        }
+        return true;
       });
-    }
-    if (postcode) {
-      results = results.filter((p) => p.location.toUpperCase().startsWith(postcode));
-    }
+    }  
 
     setFilteredProperties(results);
     setHasSearched(true);
