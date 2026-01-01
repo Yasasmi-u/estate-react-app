@@ -1,8 +1,5 @@
 // src/components/PropertyPage.jsx
-import React, { useState } from "react";
 import { useParams, Link } from "react-router-dom";
-import { Tab, Tabs, TabList, TabPanel } from "react-tabs";
-import "react-tabs/style/react-tabs.css";
 import ImageGallery from "react-image-gallery";
 import "react-image-gallery/styles/css/image-gallery.css";
 import DOMPurify from "dompurify";
@@ -67,7 +64,7 @@ const imagesMap = {
   prop7: [prop7pic1, prop7pic2, prop7pic3, prop7pic4, prop7pic5, prop7pic6],
 };
 
-function PropertyPage({ properties}) {
+function PropertyPage({ properties, addToFavourites, isFavourite }) {
   const { id } = useParams();
   const property = properties.find((p) => p.id === id);
 
@@ -85,6 +82,8 @@ function PropertyPage({ properties}) {
     thumbnail: img,
   }));
 
+  const isAlreadyFavourite = isFavourite(property.id);
+
   return (
     <div className="property-page">
       <Link to="/" className="back-link">
@@ -99,6 +98,14 @@ function PropertyPage({ properties}) {
           {property.bedrooms} Bedrooms | {DOMPurify.sanitize(property.tenure)}
         </p>
       </div>
+
+      <button
+        onClick={() => addToFavourites(property)}
+        className="favourite-btn-page"
+        disabled={isAlreadyFavourite}
+      >
+        {isAlreadyFavourite ? "✓ Added to Favourites" : "❤️ Add to Favourites"}
+      </button>
 
       <div className="property-gallery">
         <ImageGallery items={images} />

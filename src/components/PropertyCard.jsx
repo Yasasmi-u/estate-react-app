@@ -1,6 +1,8 @@
 // src/components/PropertyCard.jsx
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import DOMPurify from "dompurify";
 
 import prop1pic1 from "../assets/prop1pic1small.jpeg";
 import prop2pic1 from "../assets/prop2pic1small.jpeg";
@@ -51,6 +53,13 @@ function PropertyCard({ property }) {
           <Link to={`/property/${property.id}`} className="details-link">
             View Details
           </Link>
+          <button
+            onClick={() => onAddToFavourites(property)}
+            className="favourite-btn"
+            aria-label="Add to favourites"
+          >
+            ❤️ Add to Favourites
+          </button>
         </div>
       </div>
     </article>
@@ -59,6 +68,7 @@ function PropertyCard({ property }) {
 
 PropertyCard.propTypes = {
   property: PropTypes.object.isRequired,
+  onAddToFavourites: PropTypes.func.isRequired,
 };
 
 export default PropertyCard;

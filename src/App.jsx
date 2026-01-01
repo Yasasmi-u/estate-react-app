@@ -1,68 +1,70 @@
 // App.jsx
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import propertiesData from "./data/properties.json";
-import SearchForm from "./components/SearchForm";
-import PropertyCard from "./components/PropertyCard";
+import SearchPage from "./components/SearchPage";
 import PropertyPage from "./components/PropertyPage";
 import "./App.css";
 
 function App() {
-  const [filteredProperties, setFilteredProperties] = useState([]);
-  const [hasSearched, setHasSearched] = useState(false);
+  const [favourites, setFavourites] = useState([]);
 
-  const handleSearch = ({ type, bedrooms, price, dateAdded, postcode }) => {
-    let results = propertiesData.properties;
+  // Load favourites from localStorage on mount
+  useEffect(() => {
+    const saved = localStorage.getItem("favourites");
+    if (saved) {
+      setFavourites(JSON.parse(saved));
+    }
+  }, []);
 
-    if (type && type !== "Any") {
-      results = results.filter((p) => p.type === type);
-    }
-    if (bedrooms) {
-      results = results.filter((p) => p.bedrooms >= bedrooms[0] && p.bedrooms <= bedrooms[1]);
-    }
-    if (price) {
-      results = results.filter((p) => p.price >= price[0] && p.price <= price[1]);
-    }
-    if (dateAdded) {
-      results = results.filter(p => {
-        const addedDate = new Date(
-          p.added.year,
-          new Date(`${p.added.month} 1`).getMonth(),
-          p.added.day
-        );
-        
-        if (dateAdded.start && dateAdded.end) {
-          return addedDate >= dateAdded.start && addedDate <= dateAdded.end;
-        } else if (dateAdded.start) {
-          return addedDate >= dateAdded.start;
-        }
-        return true;
-      });
-    }  
+  // Save favourites to localStorage whenever it changes
+  useEffect(() => {
+    localStorage.setItem("favourites", JSON.stringify(favourites));
+  }, [favourites]);
 
-    setFilteredProperties(results);
-    setHasSearched(true);
+  const addToFavourites = (property) => {
+    if (!favourites.find((fav) => fav.id === property.id)) {
+      setFavourites([...favourites, property]);
+    }
+  };
+
+  const removeFromFavourites = (propertyId) => {
+    setFavourites(favourites.filter((fav) => fav.id !== propertyId));
+  };
+
+  const clearFavourites = () => {
+    setFavourites([]);
   };
 
   return (
-    <div className="App">
-      <h1>Property Search</h1>
-
-      <SearchForm onSearch={handleSearch} />
-
-      {!hasSearched && (
-        <p className="hint">Use the search form to find properties.</p>
-      )}
-
-      {hasSearched && filteredProperties.length === 0 && (
-        <p className="hint">No properties match your criteria.</p>
-      )}
-
-      <div className="properties-grid">
-        {filteredProperties.map(property => (
-          <PropertyCard key={property.id} property={property} />
-        ))}
+    <Router>
+      <div className="App">
+        <Routes>
+          <Route
+            path="/"
+            element={
+              <SearchPage
+                properties={propertiesData.properties}
+                favourites={favourites}
+                addToFavourites={addToFavourites}
+                removeFromFavourites={removeFromFavourites}
+                clearFavourites={clearFavourites}
+              />
+            }
+          />
+          <Route
+            path="/property/:id"
+            element={
+              <PropertyPage
+                properties={propertiesData.properties}
+                addToFavourites={addToFavourites}
+                isFavourite={(id) => favourites.some((fav) => fav.id === id)}
+              />
+            }
+          />
+        </Routes>
       </div>
-    </div>
+    </Router>
   );
 }
 
