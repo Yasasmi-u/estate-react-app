@@ -1,12 +1,13 @@
 // App.jsx
 import React, { useState } from "react";
-import propertiesData from '../data/properties.json';
-import SearchForm from '../components/SearchForm';
-import PropertyCard from '../components/PropertyCard';
-import '/App.css';
+import propertiesData from "./data/properties.json";
+import SearchForm from "./components/SearchForm";
+import PropertyCard from "./components/PropertyCard";
+import "./App.css";
 
 function App() {
-  const [filteredProperties, setFilteredProperties] = useState(propertiesData.properties);
+  const [filteredProperties, setFilteredProperties] = useState([]);
+  const [hasSearched, setHasSearched] = useState(false);
 
   const handleSearch = ({ type, bedrooms, price, dateAdded, postcode }) => {
     let results = propertiesData.properties;
@@ -21,21 +22,39 @@ function App() {
       results = results.filter((p) => p.price >= price[0] && p.price <= price[1]);
     }
     if (dateAdded) {
-      results = results.filter((p) => new Date(p.added.year, new Date(`${p.added.month} 1`).getMonth(), p.added.day) >= dateAdded);
+      results = results.filter(p => {
+        const addedDate = new Date(
+          p.added.year,
+          new Date(`${p.added.month} 1`).getMonth(),
+          p.added.day
+        );
+        return addedDate >= dateAdded;
+      });
     }
     if (postcode) {
       results = results.filter((p) => p.location.toUpperCase().startsWith(postcode));
     }
 
     setFilteredProperties(results);
+    setHasSearched(true);
   };
 
   return (
     <div className="App">
       <h1>Property Search</h1>
+
       <SearchForm onSearch={handleSearch} />
-      <div className="property-results">
-        {filteredProperties.map((property) => (
+
+      {!hasSearched && (
+        <p className="hint">Use the search form to find properties.</p>
+      )}
+
+      {hasSearched && filteredProperties.length === 0 && (
+        <p className="hint">No properties match your criteria.</p>
+      )}
+
+      <div className="properties-grid">
+        {filteredProperties.map(property => (
           <PropertyCard key={property.id} property={property} />
         ))}
       </div>

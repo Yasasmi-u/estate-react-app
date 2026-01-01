@@ -1,95 +1,113 @@
+/* ===== App Layout ===== */
 #root {
   max-width: 1280px;
   margin: 0 auto;
   padding: 2rem;
-  text-align: center;
 }
 
-/* === PropertyCard Styles === */
+.App {
+  max-width: 1200px;
+  margin: auto;
+  font-family: Arial, sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.hint {
+  text-align: center;
+  color: #666;
+  margin: 20px 0;
+}
+
+/* ===== Properties Grid ===== */
+.properties-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+/* ===== Property Card ===== */
 .property-card {
-  display: flex;
-  flex-direction: column;
-  border: 1px solid #ddd;
-  border-radius: 8px;
+  background: #fff;
+  border-radius: 10px;
   overflow: hidden;
-  margin: 1rem;
-  max-width: 300px;
-  transition: transform 0.2s, box-shadow 0.2s;
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
 }
 
 .property-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+  transform: translateY(-4px);
 }
 
 .property-image {
   width: 100%;
-  height: 200px;
+  height: 220px;
   object-fit: cover;
 }
 
+/* ===== Thumbnails ===== */
+.thumbnail-row {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px;
+  background: #f7f7f7;
+}
+
+.thumbnail {
+  width: 45px;
+  height: 45px;
+  object-fit: cover;
+  cursor: pointer;
+  opacity: 0.7;
+  border-radius: 4px;
+}
+
+.thumbnail.active,
+.thumbnail:hover {
+  opacity: 1;
+  outline: 2px solid #0077cc;
+}
+
+/* ===== Card Info ===== */
 .property-info {
-  padding: 0.75rem 1rem;
+  padding: 15px;
 }
 
-.property-type {
-  font-size: 1.2rem;
-  margin: 0.25rem 0;
+.property-info h2 {
+  margin: 0 0 10px;
 }
 
-.property-price {
+.price {
   font-weight: bold;
-  color: #2a9d8f;
-  margin: 0.25rem 0;
+  color: #0077cc;
 }
 
-.property-location {
+.location {
   font-size: 0.9rem;
   color: #555;
-  margin: 0.25rem 0;
 }
 
-.property-description {
-  font-size: 0.85rem;
-  margin: 0.5rem 0;
+.description {
+  font-size: 0.9rem;
+  margin: 10px 0;
 }
 
-.property-details-link {
+.details-link {
   display: inline-block;
-  margin-top: 0.5rem;
+  margin-top: 10px;
+  color: #0077cc;
   text-decoration: none;
-  color: #fff;
-  background-color: #264653;
-  padding: 0.4rem 0.8rem;
-  border-radius: 4px;
-  transition: background-color 0.2s;
+  font-weight: bold;
 }
 
-.property-details-link:hover {
-  background-color: #1b3b4a;
-}
-
-
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
+/* ===== Responsive ===== */
+@media (max-width: 768px) {
+  .properties-grid {
+    grid-template-columns: 1fr;
   }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
 }
