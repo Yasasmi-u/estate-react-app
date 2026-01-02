@@ -56,6 +56,16 @@ import prop7pic4 from "../assets/prop7pic4small.jpeg";
 import prop7pic5 from "../assets/prop7pic5small.jpeg";
 import prop7pic6 from "../assets/prop7pic6small.jpeg";
 
+// Floor plan images
+import prop1floor from "../assets/prop1floor.jpeg";
+import prop2floor from "../assets/prop2floor.jpeg";
+import prop3floor from "../assets/prop3floor.jpeg";
+import prop4floor from "../assets/prop4floor.jpeg";
+import prop5floor from "../assets/prop5floor.jpeg";
+import prop6floor from "../assets/prop6floor.jpeg";
+import prop7floor from "../assets/prop7floor.jpeg";
+
+
 const imagesMap = {
   prop1: [prop1pic1, prop1pic2, prop1pic3, prop1pic4, prop1pic5, prop1pic6],
   prop2: [prop2pic1, prop2pic2, prop2pic3, prop2pic4, prop2pic5, prop2pic6],
@@ -65,6 +75,17 @@ const imagesMap = {
   prop6: [prop6pic1, prop6pic2, prop6pic3, prop6pic4, prop6pic5, prop6pic6],
   prop7: [prop7pic1, prop7pic2, prop7pic3, prop7pic4, prop7pic5, prop7pic6],
 };
+
+const floorPlanMap = {
+  prop1: prop1floor,
+  prop2: prop2floor,
+  prop3: prop3floor,
+  prop4: prop4floor,
+  prop5: prop5floor,
+  prop6: prop6floor,
+  prop7: prop7floor,
+};
+
 
 function PropertyPage({ properties, addToFavourites, isFavourite }) {
   const { id } = useParams();
@@ -130,10 +151,16 @@ function PropertyPage({ properties, addToFavourites, isFavourite }) {
         <TabPanel>
           <div className="tab-content">
             <h2>Floor Plan</h2>
-            <p>Floor plan coming soon...</p>
-            <div className="floor-plan-placeholder">
-              📐 Floor Plan Image
-            </div>
+
+            {floorPlanMap[property.id] ? (
+              <img
+                src={floorPlanMap[property.id]}
+                alt={`Floor plan for ${property.type}`}
+                className="floor-plan-image"
+              />
+            ) : (
+              <p>Floor plan not available for this property.</p>
+            )}
           </div>
         </TabPanel>
 
