@@ -79,8 +79,8 @@ function SearchPage({
     <div className="search-page">
       {/* Hero Section */}
       <div className="hero-section">
-        <h1>Find Your Dream Home</h1>
-        <p>Search from {properties.length} properties across London and surrounding areas</p>
+        <h1><span>Find Your Dream Home</span></h1>
+        <p>Search from properties across London and surrounding areas</p>
       </div>
 
       {/* Stats Section */}
