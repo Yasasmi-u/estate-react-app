@@ -35,6 +35,14 @@ const SearchForm = ({ onSearch }) => {
     setPrice([50000, 2000000]);
     setDateAdded(null);
     setPostcode("");
+
+    onSearch({
+      type: "Any",
+      bedrooms: [1, 6],
+      price: [50000, 2000000],
+      dateAdded: null,
+      postcode: "",
+    });
   };
 
   return (
