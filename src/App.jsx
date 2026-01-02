@@ -37,7 +37,7 @@ function App() {
   };
 
   return (
-    <Router>
+    <Router basename="/estate-react-app">
       <div className="App">
         <Routes>
           <Route
