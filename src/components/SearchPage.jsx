@@ -16,7 +16,7 @@ function SearchPage({
   const [sortOption, setSortOption] = useState("featured");
 
   // ---------------- SEARCH LOGIC ----------------
-  const handleSearch = ({ type, bedrooms, price, dateAdded, postcode }) => {
+  const handleSearch = ({ type, bedrooms, price, addedWithin, postcode }) => {
     let results = properties;
 
     // Filter by type
@@ -38,17 +38,22 @@ function SearchPage({
       );
     }
 
-    // Filter by date added
-    if (dateAdded) {
+    // Filter by "added within"
+    if (addedWithin !== "any") {
+      const days = parseInt(addedWithin);
+      const cutoffDate = new Date();
+      cutoffDate.setDate(cutoffDate.getDate() - days);
+
       results = results.filter((p) => {
         const addedDate = new Date(
           p.added.year,
           new Date(`${p.added.month} 1`).getMonth(),
           p.added.day
         );
-        return addedDate >= dateAdded;
+        return addedDate >= cutoffDate;
       });
     }
+
 
     // Filter by postcode
     if (postcode && postcode.trim() !== "") {

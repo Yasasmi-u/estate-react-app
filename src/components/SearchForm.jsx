@@ -1,15 +1,13 @@
 import { useState } from "react";
-import DatePicker from "react-datepicker";
 import Select from "react-select";
 import Slider from "rc-slider";
-import "react-datepicker/dist/react-datepicker.css";
 import "rc-slider/assets/index.css";
 
 const SearchForm = ({ onSearch }) => {
   const [type, setType] = useState(null);
   const [bedrooms, setBedrooms] = useState([1, 6]);
   const [price, setPrice] = useState([50000, 2000000]);
-  const [dateAdded, setDateAdded] = useState(null);
+  const [addedWithin, setAddedWithin] = useState("any");
   const [postcode, setPostcode] = useState("");
 
   const typeOptions = [
@@ -24,7 +22,7 @@ const SearchForm = ({ onSearch }) => {
       type: type?.value || "Any",
       bedrooms,
       price,
-      dateAdded,
+      addedWithin,
       postcode,
     });
   };
@@ -33,14 +31,14 @@ const SearchForm = ({ onSearch }) => {
     setType(null);
     setBedrooms([1, 6]);
     setPrice([50000, 2000000]);
-    setDateAdded(null);
+    setAddedWithin("any");
     setPostcode("");
 
     onSearch({
       type: "Any",
       bedrooms: [1, 6],
       price: [50000, 2000000],
-      dateAdded: null,
+      addedWithin: "any",
       postcode: "",
     });
   };
@@ -96,15 +94,17 @@ const SearchForm = ({ onSearch }) => {
         </div>
 
         <div className="form-group">
-          <label htmlFor="date-picker">Added After</label>
-          <DatePicker
-            id="date-picker"
-            selected={dateAdded}
-            onChange={(date) => setDateAdded(date)}
-            placeholderText="Any date"
-            dateFormat="dd/MM/yyyy"
-            isClearable
-          />
+          <label htmlFor="added-within">Added to site</label>
+          <select
+            id="added-within"
+            value={addedWithin}
+            onChange={(e) => setAddedWithin(e.target.value)}
+          >
+            <option value="any">Anytime</option>
+            <option value="7">Last 7 days</option>
+            <option value="90">Last 3 months</option>
+            <option value="365">Last year</option>
+          </select>
         </div>
 
         <div className="form-group">
