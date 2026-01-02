@@ -1,4 +1,4 @@
-// src/components/SearchPage.jsx
+// src/pages/SearchPage.jsx
 import { useState } from "react";
 import SearchForm from "../components/SearchForm";
 import PropertyCard from "../components/PropertyCard";
@@ -53,8 +53,6 @@ function SearchPage({
     if (postcode && postcode.trim() !== "") {
       const sanitizedPostcode = DOMPurify.sanitize(postcode.trim().toUpperCase());
       results = results.filter((p) => {
-        const propertyPostcode = p.location.split(" ").pop().split("")[0] + 
-                                 p.location.split(" ").pop().match(/\d+/)?.[0] || "";
         // Extract postcode area from location (e.g., "BR5" from "Orpington BR5")
         const postcodeMatch = p.location.match(/([A-Z]{1,2}\d{1,2})/);
         if (postcodeMatch) {
@@ -79,34 +77,83 @@ function SearchPage({
 
   return (
     <div className="search-page">
-      <h1>Property Search</h1>
+      {/* Hero Section */}
+      <div className="hero-section">
+        <h1>Find Your Dream Home</h1>
+        <p>Search from {properties.length} properties across London and surrounding areas</p>
+      </div>
+
+      {/* Stats Section */}
+      <div className="stats-section">
+        <div className="stat-card">
+          <h3>{properties.length}</h3>
+          <p>Total Properties</p>
+        </div>
+        <div className="stat-card">
+          <h3>{properties.filter(p => p.type === "House").length}</h3>
+          <p>Houses</p>
+        </div>
+        <div className="stat-card">
+          <h3>{properties.filter(p => p.type === "Flat").length}</h3>
+          <p>Flats</p>
+        </div>
+        <div className="stat-card">
+          <h3>{favourites.length}</h3>
+          <p>Saved Properties</p>
+        </div>
+      </div>
 
       <div className="main-content">
         <div className="search-section">
           <SearchForm onSearch={handleSearch} />
 
           {!hasSearched && (
-            <p className="hint">Use the search form above to find properties.</p>
+            <div className="hint">
+              <h3>🏠 Welcome to Your Property Search</h3>
+              <p>Use the search form above to find your perfect home. Filter by type, price, bedrooms, location and more!</p>
+            </div>
           )}
 
-          {hasSearched && filteredProperties.length === 0 && (
-            <p className="hint">No properties match your search criteria.</p>
-          )}
-
-          <div className="properties-grid">
-            {filteredProperties.map((property) => (
-              <div
-                key={property.id}
-                draggable
-                onDragStart={(e) => handleDragStart(e, property)}
-              >
-                <PropertyCard
-                  property={property}
-                  onAddToFavourites={addToFavourites}
-                />
+          {hasSearched && (
+            <>
+              <div className="results-header">
+                <div className="results-count">
+                  {filteredProperties.length} {filteredProperties.length === 1 ? 'property' : 'properties'} found
+                </div>
+                <div className="sort-options">
+                  <select defaultValue="featured">
+                    <option value="featured">Featured</option>
+                    <option value="price-low">Price: Low to High</option>
+                    <option value="price-high">Price: High to Low</option>
+                    <option value="bedrooms">Most Bedrooms</option>
+                    <option value="newest">Newest First</option>
+                  </select>
+                </div>
               </div>
-            ))}
-          </div>
+
+              {filteredProperties.length === 0 ? (
+                <div className="hint">
+                  <h3>😕 No properties found</h3>
+                  <p>Try adjusting your search criteria to see more results.</p>
+                </div>
+              ) : (
+                <div className="properties-grid">
+                  {filteredProperties.map((property) => (
+                    <div
+                      key={property.id}
+                      draggable
+                      onDragStart={(e) => handleDragStart(e, property)}
+                    >
+                      <PropertyCard
+                        property={property}
+                        onAddToFavourites={addToFavourites}
+                      />
+                    </div>
+                  ))}
+                </div>
+              )}
+            </>
+          )}
         </div>
 
         <FavouritesList
