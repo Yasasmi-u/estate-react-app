@@ -145,12 +145,11 @@ function PropertyPage({ properties, addToFavourites, isFavourite }) {
                 title="Property Location"
                 width="100%"
                 height="450"
-                frameBorder="0"
-                style={{ border: 0 }}
-                src={`https://www.google.com/maps/embed/v1/place?key=YOUR_API_KEY&q=${encodeURIComponent(
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                src={`https://maps.google.com/maps?q=${encodeURIComponent(
                   property.location
-                )}`}
-                allowFullScreen
+                )}&output=embed`}
               ></iframe>
             </div>
           </div>
