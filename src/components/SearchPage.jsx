@@ -153,6 +153,7 @@ function SearchPage({
         </div>
       </div>
 
+      {/* ========== MAIN CONTENT LAYOUT ========== */}
       <div className="main-content">
         <div className="search-section">
           <SearchForm onSearch={handleSearch} />
@@ -167,6 +168,8 @@ function SearchPage({
             </div>
           )}
 
+
+          {/* ========== SEARCH RESULTS ========== */}
           {hasSearched && (
             <>
               <div className="results-header">
@@ -177,7 +180,8 @@ function SearchPage({
                     : "properties"}{" "}
                   found
                 </div>
-
+                
+                {/* Sort dropdown */}
                 <div className="sort-options">
                   <label htmlFor="sort-select" className="visually-hidden">
                     Sort properties
@@ -197,13 +201,16 @@ function SearchPage({
                   </select>
                 </div>
               </div>
-
+              
+              {/* No results message */}
               {filteredProperties.length === 0 ? (
                 <div className="hint">
                   <h3>😕 No properties found</h3>
                   <p>Try adjusting your search criteria to see more results.</p>
                 </div>
               ) : (
+
+                /* Property cards grid */
                 <div className="properties-grid">
                   {sortProperties(filteredProperties, sortOption).map(
                     (property) => (
@@ -224,7 +231,8 @@ function SearchPage({
             </>
           )}
         </div>
-
+        
+        {/* ========== FAVOURITES SIDEBAR ========== */}
         <FavouritesList
           favourites={favourites}
           removeFromFavourites={removeFromFavourites}

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import DOMPurify from "dompurify";
 
-
+// Import all property main images (used for card display)
 import prop1pic1 from "../assets/prop1pic1small.jpeg";
 import prop2pic1 from "../assets/prop2pic1small.jpeg";
 import prop3pic1 from "../assets/prop3pic1small.jpeg";
@@ -37,6 +37,8 @@ function PropertyCard({ property , onAddToFavourites}) {
 
   return (
     <article className="property-card" aria-label={`Property ${property.type}`}>
+      
+      {/* ========== PROPERTY IMAGE ========== */}
       <img
         src={mainImage}
         alt={`${property.type} at ${DOMPurify.sanitize(property.location)}`}
@@ -44,12 +46,14 @@ function PropertyCard({ property , onAddToFavourites}) {
         loading="lazy"
       />
 
+      {/* ========== PROPERTY INFORMATION ========== */}
       <div className="property-info">
         <h2>{DOMPurify.sanitize(property.type)}</h2>
         <p className="price">£{property.price.toLocaleString()}</p>
         <p className="location">{DOMPurify.sanitize(property.location)}</p>
         <p className="description">{truncatedDescription}</p>
-      
+
+        {/* ========== ACTION BUTTONS ========== */}
         <div className="card-actions">
           <Link to={`/property/${property.id}`} className="details-link">
             View Details

@@ -22,6 +22,7 @@ function App() {
     localStorage.setItem("favourites", JSON.stringify(favourites));
   }, [favourites]);
 
+  // ========== FAVOURITES MANAGEMENT FUNCTIONS ==========
   const addToFavourites = (property) => {
     if (!favourites.find((fav) => fav.id === property.id)) {
       setFavourites([...favourites, property]);
@@ -36,10 +37,12 @@ function App() {
     setFavourites([]);
   };
 
+  // ========== RENDER ==========
   return (
     <Router>
       <div className="App">
         <Routes>
+           {/* Main search page route - shows all properties with search/filter */}
           <Route
             path="/"
             element={
@@ -52,6 +55,8 @@ function App() {
               />
             }
           />
+
+          {/* Individual property detail page route - dynamic :id parameter */}
           <Route
             path="/property/:id"
             element={

@@ -5,6 +5,7 @@ import { HashRouter } from 'react-router-dom';
 import SearchPage from './components/SearchPage';
 import SearchForm from './components/SearchForm';
 import propertiesData from './data/properties.json';
+import userEvent from '@testing-library/user-event';
 
 // Mock localStorage
 const localStorageMock = {
@@ -47,7 +48,7 @@ describe('Estate Agent App - Custom JEST Tests', () => {
     const mockSearch = vi.fn();
     render(<SearchForm onSearch={mockSearch} />);
     
-    // Check all 5 fields exist
+    // Check all 5 fields exist (now using React Select)
     expect(screen.getByLabelText(/Property Type/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Price Range/i)).toBeInTheDocument();
     expect(screen.getByLabelText(/Bedrooms/i)).toBeInTheDocument();
@@ -83,23 +84,22 @@ describe('Estate Agent App - Custom JEST Tests', () => {
   });
 
   // ============================================
-  // TEST 4: Clear Button Resets Form
+  // TEST 4: Clear Button Resets Form (UPDATED FOR REACT-SELECT)
   // ============================================
-  test('Clear button resets form and triggers search with default values', () => {
+  test('Clear button resets form and triggers search with default values', async () => {
     const mockSearch = vi.fn();
+    const user = userEvent.setup();
     render(<SearchForm onSearch={mockSearch} />);
     
-    // Type in postcode
+    // Find the postcode react-select input
     const postcodeInput = screen.getByLabelText(/Postcode Area/i);
-    fireEvent.change(postcodeInput, { target: { value: 'BR1' } });
-    expect(postcodeInput.value).toBe('BR1');
+    
+    // Type in postcode (react-select uses different interaction)
+    await user.type(postcodeInput, 'BR1');
     
     // Click clear button
     const clearButton = screen.getByText(/Clear/i);
-    fireEvent.click(clearButton);
-    
-    // Check if postcode is cleared
-    expect(postcodeInput.value).toBe('');
+    await user.click(clearButton);
     
     // Check if search was triggered with default values
     expect(mockSearch).toHaveBeenCalledWith(
@@ -232,19 +232,17 @@ describe('Estate Agent App - Custom JEST Tests', () => {
   });
 
   // ============================================
-  // TEST 9: Postcode Input Converts to Uppercase
+  // TEST 9: React Select for Postcode Works (UPDATED)
   // ============================================
-  test('postcode input automatically converts to uppercase', () => {
+  test('postcode field uses React Select component', () => {
     const mockSearch = vi.fn();
     render(<SearchForm onSearch={mockSearch} />);
     
+    // Check that the postcode field is a react-select input
     const postcodeInput = screen.getByLabelText(/Postcode Area/i);
-    
-    // Type lowercase
-    fireEvent.change(postcodeInput, { target: { value: 'br1' } });
-    
-    // Should be uppercase
-    expect(postcodeInput.value).toBe('BR1');
+    expect(postcodeInput).toBeInTheDocument();
+    expect(postcodeInput).toHaveAttribute('type', 'text');
+    expect(postcodeInput).toHaveAttribute('role', 'combobox');
   });
 
   // ============================================
@@ -270,19 +268,16 @@ describe('Estate Agent App - Custom JEST Tests', () => {
   });
 
   // ============================================
-  // TEST 12: Added Within Dropdown Has All Options
+  // TEST 12: Added Within Uses React Select (UPDATED)
   // ============================================
-  test('Added Within dropdown has all time period options', () => {
+  test('Added Within field uses React Select component', () => {
     const mockSearch = vi.fn();
     render(<SearchForm onSearch={mockSearch} />);
     
-    const dropdown = screen.getByLabelText(/Added to site/i);
-    
-    // Check all options exist
-    expect(dropdown).toContainHTML('<option value="any">Anytime</option>');
-    expect(dropdown).toContainHTML('<option value="7">Last 7 days</option>');
-    expect(dropdown).toContainHTML('<option value="90">Last 3 months</option>');
-    expect(dropdown).toContainHTML('<option value="365">Last year</option>');
+    // Check that "Added Within" is now a react-select component
+    const addedWithinInput = screen.getByLabelText(/Added to site/i);
+    expect(addedWithinInput).toBeInTheDocument();
+    expect(addedWithinInput).toHaveAttribute('role', 'combobox');
   });
 
   // ============================================

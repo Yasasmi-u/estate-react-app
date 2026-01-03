@@ -8,6 +8,8 @@ function FavouritesList({
   clearFavourites,
   onDrop,
 }) {
+
+  // ========== DRAG & DROP HANDLERS ==========
   const handleDragOver = (e) => {
     e.preventDefault();
   };
@@ -30,6 +32,7 @@ function FavouritesList({
     }
   };
 
+  // ========== RENDER ==========
   return (
     <aside className="favourites-sidebar">
       <h2>Favourites ({favourites.length})</h2>
@@ -42,6 +45,8 @@ function FavouritesList({
         {favourites.length === 0 ? (
           <p className="empty-message">Drag properties here to add to favourites</p>
         ) : (
+
+          /* ========== FAVOURITES LIST ========== */
           <ul className="favourites-list">
             {favourites.map((property) => (
               <li
@@ -55,6 +60,8 @@ function FavouritesList({
                   <p className="fav-price">£{property.price.toLocaleString()}</p>
                   <p className="fav-location">{DOMPurify.sanitize(property.location)}</p>
                 </Link>
+
+                {/* ========== REMOVE BUTTON ========== */}
                 <button
                   onClick={() => removeFromFavourites(property.id)}
                   className="remove-btn"
@@ -67,13 +74,16 @@ function FavouritesList({
           </ul>
         )}
       </div>
+      
 
+      {/* ========== CLEAR ALL BUTTON ========== */}
       {favourites.length > 0 && (
         <button onClick={clearFavourites} className="clear-btn">
           Clear All Favourites
         </button>
       )}
 
+      {/* ========== DRAG-TO-REMOVE ZONE ========== */}
       <div
         className="drag-to-remove"
         onDragOver={handleDragOver}
