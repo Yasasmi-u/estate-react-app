@@ -179,7 +179,13 @@ function SearchPage({
                 </div>
 
                 <div className="sort-options">
+                  <label htmlFor="sort-select" className="visually-hidden">
+                    Sort properties
+                  </label>
+
                   <select
+                    id="sort-select"
+                    aria-label="Sort properties"
                     value={sortOption}
                     onChange={(e) => setSortOption(e.target.value)}
                   >
