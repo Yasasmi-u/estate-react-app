@@ -1,18 +1,58 @@
-# React + Vite
+# Estate Agent Web Application
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Student Information
+- **Name**: W.R.U.Yasasmie
+- **Student ID**: w2121113/ 20240878
+- **Module**: 5COSC026W Advanced Client-Side Web Development
 
-Currently, two official plugins are available:
+## Project Links
+- **GitHub Repository**: https://github.com/Yasasmi-u/estate-react-app
+- **Live Deployment**: https://yasasmi-u.github.io/estate-react-app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Installation Instructions
 
-## React Compiler
+### Install Dependencies
+```bash
+npm install
+```
 
-The React Compiler is enabled on this template. See [this documentation](https://react.dev/learn/react-compiler) for more information.
+### Run Development Server
+```bash
+npm run dev
+```
 
-Note: This will impact Vite dev & build performances.
+### Run Tests
+```bash
+npm test
+```
 
-## Expanding the ESLint configuration
+### Build for Production
+```bash
+npm run build
+```
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### Deploy to GitHub Pages
+```bash
+npm run deploy
+```
+
+## Features Implemented
+
+✅ 7 properties in JSON format with diverse data  
+✅ Search by 5 criteria (type, price, bedrooms, date added, postcode)  
+✅ All form elements use React widgets (react-select, rc-slider)  
+✅ Property results display with images and details  
+✅ Individual property pages with full information  
+✅ Image gallery with 6 images per property  
+✅ React tabs for Description, Floor Plan, and Google Maps  
+✅ Add to favourites (both drag-and-drop and button)  
+✅ Remove from favourites (both drag-and-drop and button)  
+✅ Clear all favourites functionality  
+✅ Favourites display on search page  
+✅ Fully responsive design (desktop, tablet, mobile)  
+✅ Sort properties by multiple criteria  
+✅ Security: CSP + DOMPurify for XSS protection  
+✅ 15 JEST tests covering all major functionality  
+✅ GitHub version control with clear commit history  
+✅ Deployed to GitHub Pages  
+
