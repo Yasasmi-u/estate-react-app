@@ -2,7 +2,6 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     
@@ -10,12 +9,12 @@
     <meta 
       http-equiv="Content-Security-Policy" 
       content="default-src 'self'; 
-               script-src 'self' 'unsafe-inline' 'unsafe-eval'; 
-               style-src 'self' 'unsafe-inline'; 
-               img-src 'self' data: https: blob:; 
-               font-src 'self' data:; 
-               connect-src 'self' https://maps.google.com https://maps.googleapis.com; 
-               frame-src https://maps.google.com; 
+               script-src 'self' 'unsafe-inline' 'unsafe-eval' https://*.googleapis.com https://*.gstatic.com; 
+               style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; 
+               img-src 'self' data: https: blob: https://*.googleapis.com https://*.gstatic.com; 
+               font-src 'self' data: https://fonts.gstatic.com; 
+               connect-src 'self' https://*.googleapis.com https://*.gstatic.com; 
+               frame-src https://maps.google.com https://*.google.com; 
                object-src 'none'; 
                base-uri 'self'; 
                form-action 'self'; 
@@ -31,8 +30,8 @@
     <!-- SEO Meta tags -->
     <meta name="description" content="Search properties across London and surrounding areas. Find houses, flats, and apartments with our advanced property search." />
     <meta name="keywords" content="estate agent, property search, houses for sale, flats for sale, London properties" />
-    <script type="module" crossorigin src="/estate-react-app/assets/index-eHujLAbe.js"></script>
-    <link rel="stylesheet" crossorigin href="/estate-react-app/assets/index-BcTTBa-y.css">
+    <script type="module" crossorigin src="/estate-react-app/assets/index-BDNrcn6y.js"></script>
+    <link rel="stylesheet" crossorigin href="/estate-react-app/assets/index-BCNJHYU6.css">
   </head>
   <body>
     <!-- Root element where React app mounts -->
