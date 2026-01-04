@@ -154,8 +154,8 @@ function SearchPage({
       </div>
 
       {/* ========== MAIN CONTENT LAYOUT ========== */}
-      <div className="main-content">
-        <div className="search-section">
+      <div className="main-content search-layout">
+        <aside className="search-sidebar">
           <SearchForm onSearch={handleSearch} />
 
           {!hasSearched && (
@@ -230,7 +230,7 @@ function SearchPage({
               )}
             </>
           )}
-        </div>
+        </aside>
         
         {/* ========== FAVOURITES SIDEBAR ========== */}
         <FavouritesList

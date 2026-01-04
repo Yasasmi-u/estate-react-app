@@ -4,7 +4,10 @@ import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import propertiesData from "./data/properties.json";
 import SearchPage from "./components/SearchPage";
 import PropertyPage from "./components/PropertyPage";
+import ScrollToTop from "./components/ScrollToTop";
 import "./App.css";
+
+
 
 function App() {
   const [favourites, setFavourites] = useState([]);
@@ -40,35 +43,36 @@ function App() {
   // ========== RENDER ==========
   return (
     <Router>
-      <div className="App">
-        <Routes>
-           {/* Main search page route - shows all properties with search/filter */}
-          <Route
-            path="/"
-            element={
-              <SearchPage
-                properties={propertiesData.properties}
-                favourites={favourites}
-                addToFavourites={addToFavourites}
-                removeFromFavourites={removeFromFavourites}
-                clearFavourites={clearFavourites}
-              />
-            }
-          />
+      <ScrollToTop />
+        <div className="App">
+          <Routes>
+            {/* Main search page route - shows all properties with search/filter */}
+            <Route
+              path="/"
+              element={
+                <SearchPage
+                  properties={propertiesData.properties}
+                  favourites={favourites}
+                  addToFavourites={addToFavourites}
+                  removeFromFavourites={removeFromFavourites}
+                  clearFavourites={clearFavourites}
+                />
+              }
+            />
 
-          {/* Individual property detail page route - dynamic :id parameter */}
-          <Route
-            path="/property/:id"
-            element={
-              <PropertyPage
-                properties={propertiesData.properties}
-                addToFavourites={addToFavourites}
-                isFavourite={(id) => favourites.some((fav) => fav.id === id)}
-              />
-            }
-          />
-        </Routes>
-      </div>
+            {/* Individual property detail page route - dynamic :id parameter */}
+            <Route
+              path="/property/:id"
+              element={
+                <PropertyPage
+                  properties={propertiesData.properties}
+                  addToFavourites={addToFavourites}
+                  isFavourite={(id) => favourites.some((fav) => fav.id === id)}
+                />
+              }
+            />
+          </Routes>
+        </div>
     </Router>
   );
 }

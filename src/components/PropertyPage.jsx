@@ -91,6 +91,7 @@ function PropertyPage({ properties, addToFavourites, isFavourite }) {
   const { id } = useParams();
   const property = properties.find((p) => p.id === id);
 
+  
   if (!property) {
     return (
       <div className="property-page">
@@ -113,12 +114,17 @@ function PropertyPage({ properties, addToFavourites, isFavourite }) {
         ← Back to Search
       </Link>
 
+
+      <div className="property-gallery">
+        <ImageGallery items={images} />
+      </div>
+
       <div className="property-header">
-        <h1>{DOMPurify.sanitize(property.type)}</h1>
+        <h1>{property.bedrooms} Bedroom {DOMPurify.sanitize(property.type)}</h1>
         <p className="property-price">£{property.price.toLocaleString()}</p>
         <p className="property-location">{DOMPurify.sanitize(property.location)}</p>
         <p className="property-details">
-          {property.bedrooms} Bedrooms | {DOMPurify.sanitize(property.tenure)}
+          {DOMPurify.sanitize(property.tenure)}
         </p>
       </div>
 
@@ -129,10 +135,6 @@ function PropertyPage({ properties, addToFavourites, isFavourite }) {
       >
         {isAlreadyFavourite ? "✓ Added to Favourites" : "❤️ Add to Favourites"}
       </button>
-
-      <div className="property-gallery">
-        <ImageGallery items={images} />
-      </div>
 
       <Tabs className="property-tabs">
         <TabList>

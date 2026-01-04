@@ -45,15 +45,13 @@ function PropertyCard({ property , onAddToFavourites}) {
         className="property-image"
         loading="lazy"
       />
-
-      {/* ========== PROPERTY INFORMATION ========== */}
+      
       <div className="property-info">
         <h2>{DOMPurify.sanitize(property.type)}</h2>
         <p className="price">£{property.price.toLocaleString()}</p>
         <p className="location">{DOMPurify.sanitize(property.location)}</p>
         <p className="description">{truncatedDescription}</p>
-
-        {/* ========== ACTION BUTTONS ========== */}
+      
         <div className="card-actions">
           <Link to={`/property/${property.id}`} className="details-link">
             View Details
